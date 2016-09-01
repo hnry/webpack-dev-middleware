@@ -165,7 +165,7 @@ module.exports = function(compiler, options) {
 	}
 
 	function handleRangeHeaders(content, req, res) {
-		res.setHeader('Accept-Ranges', 'bytes');
+		if(req.headers['Accept-Ranges']) res.setHeader('Accept-Ranges', 'bytes');
 		if(req.headers.range) {
 			var ranges = parseRange(content.length, req.headers.range);
 
